@@ -9,6 +9,11 @@ describe User do
     end
     
     context "when a the user is under their subscription limit" do
+      before(:each) do
+        @zach.subscription = Subscription.new
+        @zach.subscription.stub(:can_send_message?).and_return true
+      end
+      
       it "sends a message to another user" do
         msg = @zach.send_message(
           :title => "Book Update",
@@ -38,6 +43,25 @@ describe User do
           :sender => @zach
         )
         @zach.sent_messages.should == [msg]
+      end
+    end
+    
+    context "when the user is over their subscription limit" do
+      
+      before(:each) do
+        @zach.subscription = Subscription.new
+        @zach.subscription.stub(:can_send_message?).and_return(false)
+      end
+      
+      it "does not create a message" do
+        lambda {
+          @zach.send_message(
+            :title => "Book Update",
+            :text => "Beta 11 includes great stuff!",
+            :recipient => @david,
+            :sender => @zach
+          )
+        }.should_not change(Message, :count)
       end
     end
   end
