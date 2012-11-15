@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
   def create
-    Message.new(params[:message])
+    message = Message.new(params[:message])
+    message.save
     redirect_to :action => "index"
   end
 end
