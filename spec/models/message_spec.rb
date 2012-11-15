@@ -5,7 +5,8 @@ describe Message do
     @message = Message.new(
       :title => "foo", 
       :text => "bar",
-      :recipient => mock_model("User")
+      :recipient => mock_model("User"),
+      :sender => mock_model("User")
     )
   end
   
