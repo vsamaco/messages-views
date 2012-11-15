@@ -5,6 +5,7 @@ class CreateMessages < ActiveRecord::Migration
       t.text :text
       t.integer :recipient_id
       t.integer :sender_id
+      t.integer :subscription_id
 
       t.timestamps
     end
