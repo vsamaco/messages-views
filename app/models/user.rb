@@ -3,10 +3,15 @@ class User < ActiveRecord::Base
     :foreign_key => "recipient_id"
   has_many :sent_messages, :class_name => Message.name,
     :foreign_key => "sender_id"
+  belongs_to :subscription
     
   attr_accessible :login
+  attr_writer :subscription
   
   def send_message(message_attributes)
-    sent_messages.create! message_attributes
+    if subscription.can_send_message?
+      sent_messages.create! message_attributes
+    end
   end
+  
 end
