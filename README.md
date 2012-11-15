@@ -1,2 +1,2 @@
-Testing Views with RSpec
-========================
+Testing Messages with RSpec
+===========================
