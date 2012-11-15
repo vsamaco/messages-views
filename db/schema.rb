@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(:version => 20121115050714) do
     t.string   "title"
     t.text     "text"
     t.integer  "recipient_id"
+    t.integer  "sender_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
