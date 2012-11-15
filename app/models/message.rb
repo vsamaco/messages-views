@@ -1,3 +1,3 @@
 class Message < ActiveRecord::Base
-  attr_accessible :text
+  attr_accessible :recipient_id, :text, :title
 end
