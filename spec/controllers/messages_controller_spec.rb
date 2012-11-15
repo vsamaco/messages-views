@@ -18,9 +18,16 @@ describe MessagesController do
       post :create
     end
     
-    it "redirects to the Messages index" do
-      post :create
-      response.should redirect_to(:action => "index")
+    context "when the message saves successfully" do
+      it "sets a flash[:notice] message" do
+        post :create
+        flash[:notice].should eq("The message was saved successfully.")
+      end
+      
+      it "redirects to the Messages index" do
+        post :create
+        response.should redirect_to(:action => "index")
+      end
     end
   end
 end
