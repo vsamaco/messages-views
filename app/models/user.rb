@@ -5,8 +5,7 @@ class User < ActiveRecord::Base
     :foreign_key => "sender_id"
   belongs_to :subscription
     
-  attr_accessible :login
-  attr_writer :subscription
+  attr_accessible :login, :subscription
   
   def send_message(message_attributes)
     if subscription.can_send_message?
